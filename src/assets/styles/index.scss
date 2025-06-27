@@ -1,0 +1,12 @@
+@use "_mixins.scss" as *;
+@use "_reset.scss" as *;
+@use "_fonts.scss" as *;
+
+
+
+.test {
+	color: red;
+	@include mq-sp {
+		color: blue;
+	}
+}

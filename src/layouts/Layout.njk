@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ meta.language }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ title or meta.title }}</title>
+		<meta name="description" content="{{ description or meta.description }}">
+		<link rel="stylesheet" href="/assets/styles/index.css">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+	</head>
+	<body>
+		{{ content | safe }}
+		{#- <script type="module" src="{% getBundleFileUrl "js" %}"></script> #}
+	</body>
+</html>

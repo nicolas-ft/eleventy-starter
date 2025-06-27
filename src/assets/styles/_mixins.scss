@@ -1,0 +1,49 @@
+@use "sass:math";
+
+$BODY_BREAKPOINT: 768px;
+
+
+// SP
+@mixin mq-sp {
+  @media not screen and (min-width: #{$BODY_BREAKPOINT}) {
+    @content;
+  }
+}
+
+// PC
+@mixin mq-pc {
+  @media screen and (min-width: #{$BODY_BREAKPOINT}) {
+    @content;
+  }
+}
+
+
+
+$HEADER_BREAKPOINT: 920px;
+// HEADER SP
+@mixin mq-header-sp {
+  @media not screen and (min-width: #{$HEADER_BREAKPOINT}) {
+    @content;
+  }
+}
+
+// HEADER PC
+@mixin mq-header-pc {
+  @media screen and (min-width: #{$HEADER_BREAKPOINT}) {
+    @content;
+  }
+}
+
+
+@mixin hover {
+  @media (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+
+@function px2rem($value) {
+  @return calc(($value / 16 * 1rem));
+}
