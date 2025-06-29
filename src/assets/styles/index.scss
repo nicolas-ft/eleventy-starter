@@ -3,10 +3,10 @@
 @use "_fonts.scss" as *;
 
 
-
 .test {
 	color: red;
 	@include mq-sp {
 		color: blue;
 	}
+	
 }

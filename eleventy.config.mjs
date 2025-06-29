@@ -8,34 +8,25 @@ let opened = false;
 
 export default function(eleventyConfig) {
 
-	// eleventyConfig.addPassthroughCopy(".src/public");
+  eleventyConfig.addPassthroughCopy({
+    './node_modules/alpinejs/dist/cdn.js': '/assets/js/alpine.js',
+  });
 
 	eleventyConfig.addPassthroughCopy({
-		"./src/public/": "/"
+		"./public/": "/"
 	})
+	eleventyConfig.addWatchTarget("./public/");
 
+	eleventyConfig.addPassthroughCopy({
+		"src/assets/images": "/assets/images"
+	});
+	eleventyConfig.addPassthroughCopy({
+		"src/assets/js": "/assets/js"
+	});
 
-	eleventyConfig.addWatchTarget("./src/public/");
-	eleventyConfig.addPassthroughCopy("src/assets/images");
 	eleventyConfig.addWatchTarget("./src/assets/");
 
 	eleventyConfig.addTemplateFormats('scss');
-
-	eleventyConfig.addLayoutAlias('layout', 'Layout.njk');
-
-	eleventyConfig.addGlobalData("meta", {
-		title: "Eleventy Starter",
-		url: "https://example.com/",
-		language: "en",
-		description: "DEFAULT DESCRIPTION",
-		author: {
-			name: "Your Name Here",
-			email: "youremailaddress@example.com",
-			url: "https://example.com/about-me/"
-		}
-	});
-
-
 
 	eleventyConfig.addExtension("scss", {
 		outputFileExtension: "css",
@@ -66,30 +57,31 @@ export default function(eleventyConfig) {
 		},
 	});
 
+	eleventyConfig.setBrowserSyncConfig({
+    open: true,
+  });
 
- 	eleventyConfig.setServerOptions({
-		port: PORT,
-		ready: () => {
-			if(!opened){
-				opened = true;
-				open(`http://localhost:${PORT}`);
-			}
-		}
-	});
+ 	// eleventyConfig.setServerOptions({
+	// 	port: PORT,
+	// 	ready: () => {
+	// 		if(!opened){
+	// 			opened = true;
+	// 			open(`http://localhost:${PORT}`);
+	// 		}
+	// 	}
+	// });
+	// eleventyConfig.addLayoutAlias('layout', 'src/layouts/layout.njk');
 
   return {
+		passthroughFileCopy: true,
     dir: {
 		 	input: "src",
 			includes: "components",
-		 	layouts: "layouts",
+			layouts: "layouts",
+			data: "data",
 			output: "dist",
-			data: "data"
     },
-		templateFormats: [
-			"njk",
-			"html"
-		],
+		dataTemplateEngine: "njk",
 		htmlTemplateEngine: "njk",
   }
-
 };

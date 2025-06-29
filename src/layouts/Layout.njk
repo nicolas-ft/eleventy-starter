@@ -3,13 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ title or meta.title }}</title>
+		<title>{% if title %}{{ title }} | {{ meta.title }}{% else %}{{ meta.title }}{% endif %}</title>
 		<meta name="description" content="{{ description or meta.description }}">
 		<link rel="stylesheet" href="/assets/styles/index.css">
-		<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png?last">
 	</head>
-	<body>
-		{{ content | safe }}
-		{#- <script type="module" src="{% getBundleFileUrl "js" %}"></script> #}
+
+	<body x-data="site">
+		{% block content %}
+			{{ content | safe }}
+		{% endblock %}
+
+		<script src="/assets/js/script.js"></script>
+		<script defer src="/assets/js/alpine.js"></script>
 	</body>
 </html>
