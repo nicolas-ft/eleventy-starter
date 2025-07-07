@@ -5,21 +5,16 @@ import { EleventyRenderPlugin } from "@11ty/eleventy";
 import { minify } from "terser";
 import fs from "fs";
 
-
-
 export default function(eleventyConfig) {
 
-	// eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-	// 	urlPath: "/assets/images/",
-	// 	outputDir: "/dist/assets/images"
-	// });
+	eleventyConfig.addPlugin(eleventyVue);
+
 	eleventyConfig.addFilter("jsmin", async function (code, callback) {
 		try {
 			const minified = await minify(code);
 			callback(null, minified.code);
 		} catch (err) {
 			console.error("Terser error: ", err);
-			// Fail gracefully.
 			callback(null, code);
 		}
 	});
@@ -41,17 +36,6 @@ export default function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({
 		"src/assets/images": "/assets/images"
 	});
-
-	// eleventyConfig.addPassthroughCopy(
-	// 	{ "src/assets/js": "/assets/js" },
-  //   {
-  //     transform: () =>
-	// 		new TransformStream((stream, chunk, done) =>
-	// 			esbuild.transform(chunk.toString(), { minify: true })
-	// 			.then((result) => done(null, result.code))
-	// 		),
-  //   }
-	// );
 
 	eleventyConfig.addWatchTarget("./src/assets/");
 
@@ -93,9 +77,6 @@ export default function(eleventyConfig) {
 
 
 	eleventyConfig.on("afterBuild", () => {
-
-// "src/assets/js": "/assets/js"
-
     const srcDir = "./src/assets/js";
     const publicDir = "./dist/assets/js";
 
