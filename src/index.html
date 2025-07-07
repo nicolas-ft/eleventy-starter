@@ -1,0 +1,23 @@
+---
+layout: layout.html
+title: TOP
+---
+
+	{% renderTemplate "webc" %}
+	<header>HEY !</header>
+	{% endrenderTemplate %}
+
+	{% renderTemplate "webc" %}
+	<section webc:import="./src/components/header.webc">
+
+		<p>cool</p>
+
+	</section>
+	{% endrenderTemplate %}
+	
+	<h1 class="test" x-text="greetings"></h1>
+
+	<img src="/assets/images/dummy.jpg" alt="test" />
+
+	<h2>TOP</h2>
+	<a href="/about/">ABOUT</a>

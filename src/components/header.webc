@@ -1,0 +1,21 @@
+<template webc:root class="another-class"> 
+
+	<h1 x-text="title">TITLE</h1>
+
+	<slot />
+
+</template>
+
+
+
+<style webc:keep webc:scoped>
+  :host {
+    display: block;
+	}
+	h1{
+		font-size: 50px;
+	}
+	p {
+		color: green;
+	}
+</style>

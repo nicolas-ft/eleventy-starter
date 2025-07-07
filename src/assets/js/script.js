@@ -1,5 +1,6 @@
 const site = () => {
 	return {
-		greatings: 'hello Eleventy / SCSS / Alpine.js !'
+		greetings: 'hello Eleventy + SCSS + Alpine.js + webcomponents !',
+		title: 'MY SITE TITLE'
 	}
 }

@@ -1,10 +1,14 @@
 @use "_mixins.scss" as *;
 @use "_reset.scss" as *;
-@use "_fonts.scss" as *;
 
-
+a {
+	text-decoration: underline;
+	&:hover {
+		text-decoration: none;
+	}
+}
 .test {
-	color: red;
+	color: blue;
 	@include mq-sp {
 		color: blue;
 	}
